@@ -3,6 +3,7 @@ import inquirer from "inquirer";
 import Truck from "./Truck.js";
 import Car from "./Car.js";
 import Motorbike from "./Motorbike.js";
+import Wheel from "./Wheel.js";
 // define the Cli class
 class Cli {
     // TODO: Update the constructor to accept Truck and Motorbike objects as well
@@ -217,7 +218,7 @@ class Cli {
             },
         ])
             .then((answers) => {
-            const motorbike = new Motorbike(Cli.generateVin(), answers.color, answers.make, answers.model, parseInt(answers.year), parseInt(answers.weight), parseInt(answers.topSpeed), []);
+            const motorbike = new Motorbike(Cli.generateVin(), answers.color, answers.make, answers.model, parseInt(answers.year), parseInt(answers.weight), parseInt(answers.topSpeed), [new Wheel(answers.frontWheelDiameter, answers.frontWheelBrand), new Wheel(answers.rearWheelDiameter, answers.rearWheelBrand)]);
             this.vehicles.push(motorbike);
             this.selectedVehicleVin = motorbike.vin;
             this.performActions();
